@@ -1,0 +1,72 @@
+		\version "2.24.1"
+		soprano = \relative c' { 
+			\key f \major % Key signature with B♭ (F major)
+			\time 4/4     % Time signature 4/4
+			f4 c d d | bes' e, g f | c' a a g8 a8 | bes4 g a2 \break
+			
+			g4 d8 e8 f4 f | d' b8 g8 a4 g | c g8 e8 d4 d8 e8 | f4 g e2 |  f4 c d d \break
+			
+			bes'4 e, g f | c' a a g8 a8 | bes4 e, f2
+		}
+		
+		alto = \relative c' {
+			\key f \major
+			\time 4/4
+			% Line 1
+			c4 a bes bes | f' c e d | g f f e | f e e2 \break
+			% Line 2
+			d4 a c c | f g e e | g e c c | d f e2 | c4 a bes bes | \break
+			% Line 3
+			f'4 c e d | g f f e | f c c2 
+		}
+		
+		tenor = \relative c {
+			\key f \major
+			\time 4/4
+			% Line 1
+			a'4 f f f | d' g, cis, a' | e' c c g | d' c c2 \break
+			% Line 2
+			b4 f a a | g d g bes | c c a a | bes d c2 | a4 f f f | \break
+			% Line 3
+			d'4 g, cis, a' | e' c c g | d' g, a2
+			
+		}
+		
+		bass = \relative c {
+			\key f \major
+			\time 4/4
+			% Line 1
+			f,4 f b b | g c g d' | a f' f a, | g c f2 \break
+			% Line 2
+			g4 b f f | g g c, c | e c f f | g g c,2 | f4 c bes bes \break
+			% Line 3
+			g4 c g d'| a f' f a, | g c f2
+		}
+		
+		% Combine the voices into a choral score
+		\score {
+			<<
+			% Treble staff: Soprano and Alto
+			\new Staff \with { instrumentName = "Sop./Alto" } {
+				<<
+				\new Voice = "soprano" { \voiceOne \soprano }
+				\new Voice = "alto" { \voiceTwo \alto }
+				>>
+			}
+			% Bass staff: Tenor and Bass
+			\new Staff \with { instrumentName = "Ten./Bass" } {
+				\clef bass
+				<<
+				\new Voice = "tenor" { \voiceOne \tenor }
+				\new Voice = "bass" { \voiceTwo \bass }
+				>>
+			}
+			>>
+			\layout {
+				\context {
+					\Staff
+					\RemoveEmptyStaves % Remove empty staves if any
+				}
+			}
+		}
+		

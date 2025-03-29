@@ -3,85 +3,13 @@
 \pagestyle{fancy}     % Enable fancy header/footer style
 \fancyhf{}            % Clear default header/footer content
 \fancyhead[L]{Påskemorgen slukker sorgen} % Left header
-\fancyhead[R]{\today} % Right header with current date (March 23, 2025, in your case)
+\fancyhead[R]{\today} % Right header with current date
 \renewcommand{\headrulewidth}{0.4pt} % Add a thin line under the header
-
 \begin{document}
 	\begin{center}
 		\textbf{\Large Påskemorgen slukker sorgen}
 	\end{center}
-
-	\begin{lilypond}
-		soprano = \relative c' { 
-			\key f \major % Key signature with B♭ (F major)
-			\time 4/4     % Time signature 4/4
-			f c d d | bes' e, g f \break | c' a a g8 a8 | bes4 g a2 \break
-			
-			g4 d8 e8 f4 f | d' b8 g8 a4 g | c g8 e8 d4 d8 e8 | f4 g e2 |  f4 c d d 						
-			
-			bes' e, g f | c' a a g8 a8 | bes4 e, f2
-		}
-	
-		alto = \relative c' {
-			\key f \major
-			\time 4/4
-			% Line 1
-			c4 a, bes bes | f' c e d | g f f e | f e e2 \break
-			% Line 2
-			d4 a, c' c | f g e e | g e cc | d f e2 | c4 a, bes bes | \break
-			% Line 3
-			f' c e d | g f f d | f c c2 
-		}
-		
-		tenor = \relative c {
-			\key f \major
-			\time 4/4
-			% Line 1
-			a4, f f f | d' g, ces, a | e' c c g, | d' c c2 \break
-			% Line 2
-			b, f a a | g d g bes | c' c a, a |bes d' c2 | a4, f f f | \break
-			% Line 3
-			d' g, ces a | e' c c g, | d' g, a
-	
-		}
-		
-		bass = \relative c {
-			\key f \major
-			\time 4/4
-			% Line 1
-			f,, f b b | g, c' g, d' | a, f' f a, | g c' f2 \break
-			% Line 2
-			g b f f | g g c, c | e c f f | g g c2 | f c d, d | \break
-			% Line 3
-			g c' g, d'| a, f' f a, | g c' f2
-		}
     
-	    % Combine the voices into a choral score
-	    \score {
-	    	<<
-	    	% Treble staff: Soprano and Alto
-	    	\new Staff \with { instrumentName = "Sop./Alto" } {
-	    		<<
-	    		\new Voice = "soprano" { \voiceOne \soprano }
-	    		\new Voice = "alto" { \voiceTwo \alto }
-	    		>>
-	    	}
-	    	% Bass staff: Tenor and Bass
-	    	\new Staff \with { instrumentName = "Ten./Bass" } {
-	    		\clef bass
-	    		<<
-	    		\new Voice = "tenor" { \voiceOne \tenor }
-	    		\new Voice = "bass" { \voiceTwo \bass }
-	    		>>
-	    	}
-	    	>>
-	    	\layout {
-	    		\context {
-	    			\Staff
-	    			\RemoveEmptyStaves % Remove empty staves if any
-	    		}
-	    	}
-	    }
-	
-	\end{lilypond}
+    % Include the external LilyPond file
+	\lilypondfile{206.sang}
 \end{document}
